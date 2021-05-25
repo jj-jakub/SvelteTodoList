@@ -1,17 +1,12 @@
 <script>
-import TabContainer from "../list/TabContainer.svelte";
-
-import ListContainer from "../list/TabContainer.svelte";
-import TabMenuContainer from "./TabMenuContainer.svelte";
-import TabItem from "./TabMenuContainer.svelte";
-
-  import Tabs from "./TabMenuContainer.svelte";
+  import TabMenuContainer from "./TabMenuContainer.svelte";
+  import TabItem from "./TabItem.svelte";
 
   let currentPollsName = 'Current polls';
   let addNewPollName = 'Add New Poll';
   let thirdPageName = 'Third page'
 
-  let items = [currentPollsName, addNewPollName, thirdPageName];
+  let tabItems = [currentPollsName, addNewPollName, thirdPageName];
   let activeItem = currentPollsName;
 
   const tabChange = (e) => {
@@ -20,17 +15,17 @@ import TabItem from "./TabMenuContainer.svelte";
 </script>
 
 <div>
-  <TabMenuContainer {activeItem} {items} on:tabChangeEvent={tabChange}/>
-  
+  <TabMenuContainer {activeItem} {tabItems} on:tabChangeEvent={tabChange}/>
+
   {#if activeItem === currentPollsName}
     <p>Current polls</p>
-    <TabContainer/>
+    <TabItem tabItemNumber=0/>
   {:else if activeItem === addNewPollName}
     <p>New poll</p>
-    <TabContainer/>
+    <TabItem tabItemNumber=1/>
   {:else}
     <p>Third page</p>
-    <TabContainer/>
+    <TabItem tabItemNumber=2/>
   {/if}
 </div>
 

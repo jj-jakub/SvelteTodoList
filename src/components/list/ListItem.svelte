@@ -2,21 +2,25 @@
     import { createEventDispatcher } from 'svelte'
     const dispatch = createEventDispatcher();
 
-    export let elementNumber = -1;
+    export let elementNumber;
+    export let contentText;
     export let isChecked = false;
 
     function onListItemClick() { 
+        isChecked = !isChecked
+       
         dispatch('listItemClick', {
 			elementNumber: elementNumber,
-            checked: !isChecked
+            checked: isChecked
 		})
-        isChecked = !isChecked
     }
 </script>
 
 <div class="listitem">
     <input on:click={onListItemClick} class="listitem" type=checkbox checked={isChecked}>
-    <p class="listitem">{elementNumber}</p>
+    
+    <p class="listitem">{contentText}</p>
+    
     <button class="listitem">Delete</button>
 </div>
 
