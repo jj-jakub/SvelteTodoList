@@ -1,7 +1,11 @@
 <script>
-import ListContainer from "../list/ListContainer.svelte";
+import TabContainer from "../list/TabContainer.svelte";
 
-  import Tabs from "./Tabs.svelte";
+import ListContainer from "../list/TabContainer.svelte";
+import TabMenuContainer from "./TabMenuContainer.svelte";
+import TabItem from "./TabMenuContainer.svelte";
+
+  import Tabs from "./TabMenuContainer.svelte";
 
   let currentPollsName = 'Current polls';
   let addNewPollName = 'Add New Poll';
@@ -16,17 +20,17 @@ import ListContainer from "../list/ListContainer.svelte";
 </script>
 
 <div>
-  <Tabs {activeItem} {items} on:tabChangeEvent={tabChange}/>
+  <TabMenuContainer {activeItem} {items} on:tabChangeEvent={tabChange}/>
   
   {#if activeItem === currentPollsName}
     <p>Current polls</p>
-    <ListContainer/>
+    <TabContainer/>
   {:else if activeItem === addNewPollName}
     <p>New poll</p>
-    <ListContainer/>
+    <TabContainer/>
   {:else}
     <p>Third page</p>
-    <ListContainer/>
+    <TabContainer/>
   {/if}
 </div>
 

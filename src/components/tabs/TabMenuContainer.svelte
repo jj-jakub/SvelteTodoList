@@ -1,7 +1,6 @@
 <script>
     import { createEventDispatcher } from 'svelte'
     const dispatch = createEventDispatcher();
-    export const tabChangeEventName = 'tabChange'
 
     export let items;
     export let activeItem;
