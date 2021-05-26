@@ -3,16 +3,49 @@
 
     import AllListContainer from "../list/AllListContainer.svelte";
     import TodoItemsListContainer from "../list/TodoItemsListContainer.svelte";
+    import NewListItemInput from "../input/NewListItemInput.svelte";
+
+    const serverAddress = "http://localhost:4000"
+    const getTodosEndpoint = "/api/todos"
 
     export let tabItemNumber;
+
+    let childComponent;
+
+    const onAddNewItemButtonClick = (e) => {
+        addListItem(e.detail.itemText)
+    }
+
+    async function addListItem(itemText) {
+        const res = await fetch(serverAddress + getTodosEndpoint, { 
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                "text": itemText
+            })
+        })
+        const text = await res.text()
+    
+        childComponent.refresh()
+
+        if (res.ok) {
+            promiseItems = text
+        } else {
+            throw new Error(text)
+        }
+    }
+
+    let promiseItems = [];
 </script>
 
 <div>
     {#if tabItemNumber == 0}
-        <AllListContainer containerNumber={tabItemNumber}/>
+        <AllListContainer bind:this="{childComponent}"/>
     {:else if tabItemNumber == 1}
-        <FinishedItemsListContainer containerNumber={tabItemNumber}/>
+        <FinishedItemsListContainer bind:this="{childComponent}"/>
     {:else}
-        <TodoItemsListContainer containerNumber={tabItemNumber}/>
+        <TodoItemsListContainer bind:this="{childComponent}"/>
     {/if}
+
+    <NewListItemInput on:addButtonClick={onAddNewItemButtonClick}/>
 </div>

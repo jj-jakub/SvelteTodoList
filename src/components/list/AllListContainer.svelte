@@ -15,6 +15,10 @@
         deleteListItem(e.detail.elementNumber)
     }
 
+    export function refresh() {
+        promiseItems = getAllItems()
+    }
+
     async function deleteListItem(itemId) {
         let objectId = await getItemObjectId(itemId)
         const res = await fetch(serverAddress + deleteItemEndpoint + objectId, { method: 'DELETE' })
@@ -30,7 +34,7 @@
     async function updateListItem(itemId, checked) {
         let objectId = await getItemObjectId(itemId)
         const res = await fetch(serverAddress + getTodosEndpoint, { method: 'PATCH',
-        headers: {'Content-Type': 'application/json'},
+            headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 "_id": objectId,
                 "done": checked

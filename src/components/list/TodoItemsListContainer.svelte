@@ -15,6 +15,10 @@
         deleteListItem(e.detail.elementNumber)
     }
 
+    export function refresh() {
+        promiseItems = getAllItems()
+    }
+
     async function deleteListItem(itemId) {
         let objectId = await getItemObjectId(itemId)
         const res = await fetch(serverAddress + deleteItemEndpoint + objectId, { method: 'DELETE' })
