@@ -2,12 +2,12 @@
   import TabMenuContainer from "./TabMenuContainer.svelte";
   import TabItem from "./TabItem.svelte";
 
-  let currentPollsName = 'Current polls';
-  let addNewPollName = 'Add New Poll';
-  let thirdPageName = 'Third page'
+  let allItemsTabName = 'All items';
+  let finishedItemsTabName = 'Finished items';
+  let todoItemsTabName = 'TODO'
 
-  let tabItems = [currentPollsName, addNewPollName, thirdPageName];
-  let activeItem = currentPollsName;
+  let tabItems = [allItemsTabName, finishedItemsTabName, todoItemsTabName];
+  let activeItem = allItemsTabName;
 
   const tabChange = (e) => {
     activeItem = e.detail;
@@ -17,10 +17,10 @@
 <div>
   <TabMenuContainer {activeItem} {tabItems} on:tabChangeEvent={tabChange}/>
 
-  {#if activeItem === currentPollsName}
+  {#if activeItem === allItemsTabName}
     <p>Current polls</p>
     <TabItem tabItemNumber=0/>
-  {:else if activeItem === addNewPollName}
+  {:else if activeItem === finishedItemsTabName}
     <p>New poll</p>
     <TabItem tabItemNumber=1/>
   {:else}

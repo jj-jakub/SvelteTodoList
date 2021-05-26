@@ -14,6 +14,12 @@
             checked: isChecked
 		})
     }
+
+    function onDeleteListItemClick() {
+        dispatch('deleteListItemClick', {
+            elementNumber: elementNumber
+        })
+    }
 </script>
 
 <div class="listitem">
@@ -21,7 +27,7 @@
     
     <p class="listitem">{contentText}</p>
     
-    <button class="listitem">Delete</button>
+    <button on:click={onDeleteListItemClick} class="listitem">Delete</button>
 </div>
 
 <style>

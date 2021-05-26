@@ -3,7 +3,7 @@
 
     export let containerNumber;
 
-    let itemsAmount = 3; //TODO Calculate it from store
+    $: itemsAmount = 3; //TODO Calculate it from store
 
     const listItemClick = (e) => {
         let elementNumber = e.detail.elementNumber;
@@ -11,6 +11,13 @@
         
         let contentText = getContentText(elementNumber)
         items[containerNumber][elementNumber] = {contentText: contentText, isChecked: isChecked}
+    }
+
+    const deleteListItemClick = (e) => {
+        let elementNumber = e.detail.elementNumber;
+        delete items[containerNumber][elementNumber]
+        items = [...items, items - 1]
+        itemsAmount--
     }
 
     function getIsChecked(index) {
@@ -32,7 +39,7 @@
 <div class="container">
     {#each {length: itemsAmount} as _, i}
         <li>
-            <ListItem contentText={getContentText(i)} elementNumber={i} isChecked={getIsChecked(i)} on:listItemClick={listItemClick}/>
+            <ListItem contentText={getContentText(i)} elementNumber={i} isChecked={getIsChecked(i)} on:listItemClick={listItemClick} on:deleteListItemClick={deleteListItemClick}/>
         </li>
     {/each}
 </div>
