@@ -5,10 +5,12 @@
     import TodoItemsListContainer from "../list/TodoItemsListContainer.svelte";
     import NewListItemInput from "../input/NewListItemInput.svelte";
 
+    import Constants from '../constants/Constants'
+    
     const serverAddress = "http://localhost:4000"
     const getTodosEndpoint = "/api/todos"
 
-    export let tabItemNumber;
+    export let activeItem;
 
     let childComponent;
 
@@ -39,9 +41,9 @@
 </script>
 
 <div>
-    {#if tabItemNumber == 0}
+    {#if activeItem == Constants.allItemsTabName}
         <AllListContainer bind:this="{childComponent}"/>
-    {:else if tabItemNumber == 1}
+    {:else if activeItem == Constants.finishedItemsTabName}
         <FinishedItemsListContainer bind:this="{childComponent}"/>
     {:else}
         <TodoItemsListContainer bind:this="{childComponent}"/>

@@ -69,7 +69,6 @@
 {#await promiseItems}
     <p>Waiting for server response</p>
 {:then items}
-    <p>{items}</p>
     {#each JSON.parse(items) as item, i}
         <li>
             <ListItem contentText={item.text} elementNumber={i} isChecked={item.done} on:listItemClick={listItemClick} on:deleteListItemClick={onDeleteListItemClick}/>

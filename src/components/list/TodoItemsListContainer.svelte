@@ -69,7 +69,6 @@
 {#await promiseItems}
     <p>Waiting for server response</p>
 {:then items}
-    <p>{items}</p>
     {#each JSON.parse(items) as item, i}
         {#if item.done === false}
             <li>

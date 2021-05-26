@@ -1,13 +1,11 @@
 <script>
+  import Constants from '../constants/Constants'
+
   import TabMenuContainer from "./TabMenuContainer.svelte";
   import TabItem from "./TabItem.svelte";
 
-  let allItemsTabName = 'All items';
-  let finishedItemsTabName = 'Finished items';
-  let todoItemsTabName = 'TODO'
-
-  let tabItems = [allItemsTabName, finishedItemsTabName, todoItemsTabName];
-  let activeItem = allItemsTabName;
+  let tabItems = [Constants.allItemsTabName, Constants.finishedItemsTabName, Constants.todoItemsTabName];
+  let activeItem = Constants.allItemsTabName;
 
   const tabChange = (e) => {
     activeItem = e.detail;
@@ -17,16 +15,7 @@
 <div>
   <TabMenuContainer {activeItem} {tabItems} on:tabChangeEvent={tabChange}/>
 
-  {#if activeItem === allItemsTabName}
-    <p>Current polls</p>
-    <TabItem tabItemNumber=0/>
-  {:else if activeItem === finishedItemsTabName}
-    <p>New poll</p>
-    <TabItem tabItemNumber=1/>
-  {:else}
-    <p>Third page</p>
-    <TabItem tabItemNumber=2/>
-  {/if}
+  <TabItem {activeItem}/>
 </div>
 
 <style>
