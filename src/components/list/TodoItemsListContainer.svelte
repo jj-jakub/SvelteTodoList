@@ -30,9 +30,3 @@
 {:catch error}
     <p style="color: red">{error.message}</p>
 {/await}
-
-<style>
-    li {
-        list-style-type: none;
-    }
-</style>

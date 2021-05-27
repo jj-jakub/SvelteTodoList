@@ -6,9 +6,6 @@
     import NewListItemInput from "../input/NewListItemInput.svelte";
 
     import Constants from '../constants/Constants'
-    
-    const serverAddress = "http://localhost:4000"
-    const getTodosEndpoint = "/api/todos"
 
     export let activeItem;
 
@@ -19,7 +16,7 @@
     }
 
     async function addListItem(itemText) {
-        const res = await fetch(serverAddress + getTodosEndpoint, { 
+        const res = await fetch(Constants.serverAddress + Constants.getTodosEndpoint, { 
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({

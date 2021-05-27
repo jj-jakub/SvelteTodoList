@@ -23,15 +23,15 @@
 </script>
 
 <div class="listitem">
-    <input on:click={onListItemClick} class="listitem" type=checkbox checked={isChecked}>
+    <input on:click={onListItemClick} type=checkbox checked={isChecked}>
     
-    <p class="listitem">{contentText}</p>
+    <p>{contentText}</p>
     
-    <button on:click={onDeleteListItemClick} class="listitem">Delete</button>
+    <button on:click={onDeleteListItemClick}>Delete</button>
 </div>
 
 <style>
-    .listitem {
+    .listitem, input, p, button {
         display: flex;
         justify-content: center;
         padding: 0 10px 0 10px;
