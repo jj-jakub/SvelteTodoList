@@ -1,68 +1,19 @@
 <script>
     import ListItem from "./ListItem.svelte";
-
-    const serverAddress = "http://localhost:4000"
-    const getTodosEndpoint = "/api/todos"
-    const deleteItemEndpoint = "/api/todos/"
+    import { getAllItems, updateListItem, deleteListItem } from "../server/ServerTodoUpdateMethods";
 
     let promiseItems = getAllItems();
     
     const listItemClick = (e) => {
-        updateListItem(e.detail.elementNumber, e.detail.checked)
+        promiseItems = updateListItem(e.detail.elementNumber, e.detail.checked, promiseItems)
     }
 
     const onDeleteListItemClick = (e) => {
-        deleteListItem(e.detail.elementNumber)
+        promiseItems = deleteListItem(e.detail.elementNumber, promiseItems)
     }
 
     export function refresh() {
         promiseItems = getAllItems()
-    }
-
-    async function deleteListItem(itemId) {
-        let objectId = await getItemObjectId(itemId)
-        const res = await fetch(serverAddress + deleteItemEndpoint + objectId, { method: 'DELETE' })
-        const text = await res.text()
-    
-        if (res.ok) {
-            promiseItems = text
-        } else {
-            throw new Error(text)
-        }
-    }
-
-    async function updateListItem(itemId, checked) {
-        let objectId = await getItemObjectId(itemId)
-        const res = await fetch(serverAddress + getTodosEndpoint, { method: 'PATCH',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                "_id": objectId,
-                "done": checked
-            }) 
-        })
-        const text = await res.text()
-
-        if (res.ok) {
-            promiseItems = text
-        } else {
-            throw new Error(text)
-        }
-    }
-
-    async function getItemObjectId(itemNumber) {
-        let objectId = JSON.parse(await promiseItems)[itemNumber]._id
-        return objectId
-    }
-
-    async function getAllItems() {
-        const res = await fetch(serverAddress + getTodosEndpoint)
-        const text = await res.text()
-    
-        if (res.ok) {
-            return text
-        } else {
-            throw new Error(text)
-        }
     }
 </script>
 

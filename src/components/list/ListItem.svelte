@@ -4,7 +4,7 @@
 
     export let elementNumber;
     export let contentText;
-    export let isChecked = false;
+    export let isChecked;
 
     function onListItemClick() { 
         isChecked = !isChecked
