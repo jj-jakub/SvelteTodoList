@@ -38,9 +38,11 @@ h1 {
 }
 
 .newListItemInput {
-    vertical-align: bottom;
-    margin-top: 200px;
+    display: flex;
+    justify-content: center;
+    margin-top: 150px;
 }
+
 button {
     margin-left: 10px;
 }
