@@ -22,9 +22,7 @@
 {:then items}
     {#each JSON.parse(items) as item, i}
         {#if item.done === false}
-            <li>
-                <ListItem contentText={item.text} elementNumber={i} isChecked={item.done} on:listItemClick={listItemClick} on:deleteListItemClick={onDeleteListItemClick}/>
-            </li>
+            <ListItem contentText={item.text} elementNumber={i} isChecked={item.done} on:listItemClick={listItemClick} on:deleteListItemClick={onDeleteListItemClick}/>
         {/if}
     {/each}
 {:catch error}

@@ -21,9 +21,7 @@
     <p>Waiting for server response</p>
 {:then items}
     {#each JSON.parse(items) as item, i}
-        <li>
-            <ListItem contentText={item.text} elementNumber={i} isChecked={item.done} on:listItemClick={listItemClick} on:deleteListItemClick={onDeleteListItemClick}/>
-        </li>
+        <ListItem contentText={item.text} elementNumber={i} isChecked={item.done} on:listItemClick={listItemClick} on:deleteListItemClick={onDeleteListItemClick}/>
     {/each}
 {:catch error}
     <p style="color: red">{error.message}</p>
