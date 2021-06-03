@@ -17,7 +17,3 @@
 
   <TabItem {activeItem}/>
 </div>
-
-<style>
-
-</style>

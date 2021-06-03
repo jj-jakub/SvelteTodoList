@@ -16,13 +16,3 @@
     <input id="itemTextInput">
     <button on:click={onAddButtonClick}>Add item</button>
 </div>
-
-<style>
-    .newListItemInput {
-        vertical-align: bottom;
-        margin-top: 200px;
-    }
-    button {
-        margin-left: 10px;
-    }
-</style>
